@@ -1,5 +1,4 @@
 import { Field, InputType } from '@nestjs/graphql';
-
 @InputType()
 export class ArticleCreateDTO {
   @Field()
@@ -13,4 +12,6 @@ export class ArticleCreateDTO {
 
   @Field()
   author: string;
+
+
 }

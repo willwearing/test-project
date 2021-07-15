@@ -1,5 +1,7 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Author } from 'src/author/entities/author.entity';
+import { OneToMany } from 'typeorm';
 
 @ObjectType()
 @Entity()
@@ -23,4 +25,8 @@ export class Article {
   @Field()
   @Column()
   author: string;
+
+  @OneToMany(() => Author, auth=>auth.article)
+  @Field(() => Author)
+  authors: Author[]
 }

@@ -2,18 +2,21 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Author {
+  id: String!
+  name: String!
+  code: Int!
+  article: Article!
+  articleId: String!
+}
+
 type Article {
   id: String!
   title: String!
   date: String!
   content: String!
   author: String!
-}
-
-type Author {
-  id: String!
-  name: String!
-  code: Int!
+  authors: Author!
 }
 
 type Query {

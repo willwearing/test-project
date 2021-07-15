@@ -9,27 +9,22 @@ export class AuthorResolver {
   constructor(private readonly authorService: AuthorService) {}
 
   @Mutation(() => Author)
-  createAuthor(@Args('createAuthorInput') createAuthorInput: CreateAuthorInput) {
-    return this.authorService.create(createAuthorInput);
+  createAuthor(@Args('author') author: CreateAuthorInput) {
+    return this.authorService.create(author);
   }
 
-  @Query(() => [Author], { name: 'author' })
+  @Query(() => [Author], { name: 'findAllAuthors' })
   findAll() {
     return this.authorService.findAll();
   }
 
-  @Query(() => Author, { name: 'author' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  @Query(() => Author, { name: 'findAuthor' })
+  findOne(@Args('id') id: string) {
     return this.authorService.findOne(id);
   }
 
   @Mutation(() => Author)
-  updateAuthor(@Args('updateAuthorInput') updateAuthorInput: UpdateAuthorInput) {
-    return this.authorService.update(updateAuthorInput.id, updateAuthorInput);
-  }
-
-  @Mutation(() => Author)
-  removeAuthor(@Args('id', { type: () => Int }) id: number) {
-    return this.authorService.remove(id);
+  updateAuthor(@Args('author') author: UpdateAuthorInput) {
+    return this.authorService.update(author.id, author);
   }
 }

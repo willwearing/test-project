@@ -1,26 +1,29 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateAuthorInput } from './dto/create-author.input';
 import { UpdateAuthorInput } from './dto/update-author.input';
+import { Author } from './entities/author.entity';
 
 @Injectable()
 export class AuthorService {
-  create(createAuthorInput: CreateAuthorInput) {
-    return 'This action adds a new author';
+
+  constructor(@InjectRepository(Author) private authorRepository: Repository<Author>) {}
+
+  async create(author: CreateAuthorInput) : Promise<Author> {
+    let auth = this.authorRepository.create(author);
+    return this.authorRepository.save(auth)
   }
 
-  findAll() {
-    return `This action returns all author`;
+  async findAll() : Promise<Author[]> {
+    return this.authorRepository.find()
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} author`;
+  async findOne(id: string) : Promise<Author> {
+    return this.authorRepository.findOne(id)
   }
 
-  update(id: number, updateAuthorInput: UpdateAuthorInput) {
+  async update(id: string, updateAuthorInput: UpdateAuthorInput) {
     return `This action updates a #${id} author`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} author`;
   }
 }

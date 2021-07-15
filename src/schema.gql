@@ -10,12 +10,22 @@ type Article {
   author: String!
 }
 
+type Author {
+  id: String!
+  name: String!
+  code: Int!
+}
+
 type Query {
   getAllArticles: [Article!]!
+  findAllAuthors: [Author!]!
+  findAuthor(id: String!): Author!
 }
 
 type Mutation {
   createArticle(articleInput: ArticleCreateDTO!): Article!
+  createAuthor(author: CreateAuthorInput!): Author!
+  updateAuthor(author: UpdateAuthorInput!): Author!
 }
 
 input ArticleCreateDTO {
@@ -23,4 +33,15 @@ input ArticleCreateDTO {
   date: String!
   content: String!
   author: String!
+}
+
+input CreateAuthorInput {
+  name: String!
+  code: Int!
+}
+
+input UpdateAuthorInput {
+  id: String!
+  name: String!
+  code: Int!
 }

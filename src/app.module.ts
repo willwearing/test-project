@@ -3,6 +3,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { ArticleModule } from './article/article.module';
+import { AuthorModule } from './author/author.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { ArticleModule } from './article/article.module';
       synchronize: true,
     }),
     ArticleModule,
+    AuthorModule,
   ],
   controllers: [],
   providers: [],
